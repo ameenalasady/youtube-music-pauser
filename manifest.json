@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "YouTube Music Auto-Pauser",
   "version": "1.0.0",
-  "description": "Automatically pauses YouTube Music when a YouTube video starts playing in another tab.",
+  "description": "Automatically pauses YouTube Music when a YouTube video starts playing.",
 
   "permissions": [
     "tabs",
