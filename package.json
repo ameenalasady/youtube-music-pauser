@@ -1,6 +1,6 @@
 {
   "name": "ytm-pauser",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Automatically pauses YouTube Music when a YouTube video starts playing.",
   "main": "src/background.js",
   "scripts": {
