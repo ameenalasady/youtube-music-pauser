@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Music Auto-Pauser",
+  "version": "1.0",
+  "description": "Pauses YouTube Music when a regular YouTube video is played in another tab.",
+
+  "permissions": [
+    "tabs",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://music.youtube.com/*"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["youtube-video-listener.js"],
+      "exclude_matches": ["*://music.youtube.com/*"]
+    },
+    {
+      "matches": ["*://music.youtube.com/*"],
+      "js": ["youtube-music-pauser.js"]
+    }
+  ]
+}
