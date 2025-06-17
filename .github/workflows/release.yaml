@@ -45,7 +45,7 @@ jobs:
       # This ensures the version in the manifest (updated by build.js) matches the tag.
       # --no-git-tag-version prevents npm from creating another git tag/commit.
       - name: Update package.json version
-        run: npm version ${{ env.VERSION }} --no-git-tag-version --allow-same-version # Uses the VERSION env var set in step 3.
+        run: npm version ${{ env.VERSION }} --no-git-tag-version --allow-same-version --ignore-scripts # Uses the VERSION env var set in step 3.
 
       # Run the build script to create the extension packages (ZIP files).
       - name: Build extension packages
