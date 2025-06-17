@@ -1,33 +1,47 @@
-name: Release
+name: Create Release
 
+# This workflow runs when a new tag is pushed that starts with 'v' (e.g., v1.0.0, v1.2.3)
 on:
   push:
     tags:
-      - 'v*' # Trigger on tags starting with v (e.g., v1.0.0)
+      - 'v*'
 
 jobs:
   build-and-release:
+    # Use the latest version of Ubuntu to run the job
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      # Step 1: Check out the repository's code so the workflow can access it
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20' # Use a recent Node.js version
+      # Step 2: Set up a Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Use Node.js version 20. You can change this to match your preference.
+          node-version: '20'
+          # Use npm's cache to speed up subsequent builds
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm ci
+      # Step 3: Install the project's dependencies (archiver, fs-extra)
+      # 'npm ci' is recommended for CI environments as it's faster and more reliable than 'npm install'
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Run build script
-      run: npm run build
+      # Step 4: Run the build script defined in package.json
+      # This will execute 'node ./scripts/build.js' and create the release ZIP files
+      - name: Build the extension for Chromium and Firefox
+        run: npm run build
 
-    - name: Create Release
-      id: create_release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: dist/*.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Step 5: Create a new GitHub Release
+      # This action uses the pushed tag to create a release and uploads the specified files as assets.
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # The files to upload as release assets. The wildcard '*' matches both browser zips.
+          # The path is relative to the repository root.
+          files: release/ytm-pauser-*.zip
+          # This will automatically generate release notes based on the commits since the last tag.
+          generate_release_notes: true
