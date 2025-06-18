@@ -73,8 +73,8 @@ If you want to build the extension yourself, you can do so by following these st
 **Build Steps:**
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/ameenalasady/youtube-music-pauser.git
+    cd youtube-music-pauser
     ```
 2.  Install the required `npm` dependencies:
     ```bash
