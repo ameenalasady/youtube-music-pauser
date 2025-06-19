@@ -1,6 +1,6 @@
 # YouTube Music Auto-Pauser
 
-Automatically pauses YouTube Music when a YouTube video starts playing.
+A browser extension that automatically pauses YouTube Music when a YouTube video starts playing.
 
 ---
 
